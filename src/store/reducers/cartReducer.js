@@ -8,7 +8,7 @@ const initialState = {
 export default function cartReducer(state = initialState, { type, payload }) {
     switch (type) {
         case ADD_TO_CART:
-            let product = state.cartItems.find(c => c.product.id === payload.id)
+            let product = state.cartItems.find(c => c.product.productId === payload.productId)
             if (product) //product varsa  +1 yap
             {
                 product.quantity++;
@@ -27,7 +27,7 @@ export default function cartReducer(state = initialState, { type, payload }) {
             case REMOVE_FROM_CART:
                 return{
                     ...state,
-                    cartItems:state.cartItems.filter((c)=>c.product.id !== payload.id)
+                    cartItems:state.cartItems.filter((c)=>c.product.productId !== payload.productId)
                 };
 
         default:

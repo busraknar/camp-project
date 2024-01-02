@@ -4,7 +4,7 @@ import ProductService from '../services/productService'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../store/actions/cartActions'
-
+import { toast } from 'react-toastify'
 export default function ProductList() {
 
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ export default function ProductList() {
 
   const handleAddToCart=(product)=>{
       dispatch(addToCart(product))
+      toast.success(`${product.productName} sepete eklendi!`)
   }
 
   return (
@@ -33,8 +34,8 @@ export default function ProductList() {
 
     <Table.Body>
       {
-        products.map(product => (
-        <Table.Row key={product.productIdid}>
+        products.map((product) => (
+        <Table.Row key={product.id}>
             <Table.Cell><Link to={`/products/${product.productName}`}>
               {product.productName}</Link></Table.Cell>
             <Table.Cell>{product.unitPrice}</Table.Cell>
